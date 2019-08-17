@@ -1,11 +1,14 @@
 import React from 'react';
+import Hero from '../globals/Hero';
+import homeImg from '../../images/homeBcg.jpeg';
+// import aboutImg from '../../images/aboutBcg.jpeg'
 
 const Header = () => {
   return (
-    <div>
-      Hello from Header Component
-    </div>
+    <Hero img={ homeImg }>
+      <h1>Hello world</h1>
+    </Hero>
   )
-}
+};
 
 export default Header;

@@ -1,6 +1,30 @@
 import React from 'react'
 import styled, { css, keyframes } from 'styled-components';
-import { setColor } from '../../utils/styles'
+import { setColor, setRem, setLetterSpacing, setBorder, media } from '../../utils/styles'
+
+const fadeIn = (start, middlePoint, end) => {
+  const animation = keyframes`
+    0%{
+      opacity:0;
+      transform: translateY(${start});
+    }
+
+    50%{
+      opacity:0.5;
+      transform: translateY(${middlePoint});
+    }
+
+    100%{
+      opacity:1;
+      transform: translateY(${end});
+    }
+  `;
+
+return css`animation: ${animation} 3s ease-in-out`;
+}
+
+
+
 
 const Banner = ({ className, greeting, title, text, children }) => {
   return (
@@ -20,15 +44,12 @@ const Banner = ({ className, greeting, title, text, children }) => {
 const BannerWrapper = styled(Banner)`
   background: rgba(0,0,0,0.7);
   text-align: center;
-  padding: 60px 32px;
-  /* setRem*/
-  letter-spacing: 3px;
-  /* setLetterSpacing*/
+  padding: ${ setRem(60) } ${ setRem(32) }; /* equivalent to 60px 32px*/
+  letter-spacing: ${ setLetterSpacing(3) };
   color: ${ setColor.mainWhite };
   h1{
     text-transform: capitalize;
-    font-size: 48px;
-    /* setRem*/
+    font-size: ${ setRem(48) };
     color: ${ setColor.primaryColor };
     span{
       color: ${ setColor.mainWhite };
@@ -40,21 +61,22 @@ const BannerWrapper = styled(Banner)`
     margin: 0 auto;
   }
 
-  @media (min-width:768px) {
+  ${media.tablet`
     width: 70vw;
-    /* setBorder */
-    border: 6px solid ${ setColor.primaryColor };
+    ${setBorder({width:"6px", color:setColor.primaryColor })};
+    /* border: 6px solid ${ setColor.primaryColor }; */
     p{
       width: 75%;
     }
-  }
+  `}
+  
 
   h1{
-    /* Animations */
+    ${fadeIn('100%', '-10%', '0')}
   }
 
   .info {
-    /* Animations */
+    ${fadeIn('-100%', '10%', '0')}
   }
 `;
 

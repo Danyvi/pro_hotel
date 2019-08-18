@@ -31,3 +31,7 @@ export const PrimaryBtn = styled.button`
 `
 
 /* props.t props.r props.b props.l - margin top, right, left, bottom */
+
+export const SmallBtn = styled(PrimaryBtn)`
+  padding:${setRem(9)} ${setRem(12)};
+`
